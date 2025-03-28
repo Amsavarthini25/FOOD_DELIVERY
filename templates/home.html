@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOOD!!!</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #f7941d;
+            font-size: 32px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .auth-buttons button {
+            background-color: #f7941d;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 100vh;
+            background-color: #5a2e11;
+            padding: 10px;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        .hero img {
+            width: 100px; /* Adjust size as needed */
+            margin: 10px;
+        }
+        .hero .open-sign {
+            display: block;
+            margin: 20px auto;
+        }
+        .order, .explore {
+            background-color: #f7941d;
+            padding: 15px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+        }
+        .feature {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffedcc;
+            border-radius: 10px;
+            width: 20%;
+        }
+        /* New images styling */
+        .extra-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .extra-images img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FOOOD!!!</h1>
+        <nav>
+            <a href="#">HOME</a>
+            <a href="#">MENU</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">CONTACT</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="login" onclick="window.location.href='login.html'">Login</button>
+            <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+            <button class="logout" onclick="logoutUser()">Logout</button>
+        </div>
+    </header>
+    
+    <aside class="sidebar">
+        <img src="sidebar-food.png" alt="Food Sidebar">
+    </aside>
+    
+    <main>
+        <section class="hero">
+            <h2>Get your food delivery <br> at just 30 minutes</h2>
+            <button class="order">HUNGRY? ORDER NOW</button>
+            <button class="explore">Explore more -></button>
+            <img src="open-sign.png" alt="Open Sign" class="open-sign">
+            
+            <!-- Additional images from second picture -->
+            <div class="extra-images">
+                <img src="extra1.png" alt="Extra Image 1">
+                <img src="extra2.png" alt="Extra Image 2">
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <img src="quality.png" alt="Best Quality">
+                <p>We serve only the best to our customers</p>
+            </div>
+            <div class="feature">
+                <img src="order.png" alt="Order Now">
+                <p>The foodie website is very easy to use and no hassle</p>
+            </div>
+            <div class="feature">
+                <img src="discount.png" alt="Discount">
+                <p>We have offers on food items all around the year</p>
+            </div>
+            <div class="feature">
+                <img src="free-delivery.png" alt="Free Delivery">
+                <p>Free delivery on all orders above 499</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function logoutUser() {
+            fetch("http://127.0.0.1:8000/logout_user/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.href = "login.html"; // Redirect to login page
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
